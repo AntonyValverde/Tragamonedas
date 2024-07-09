@@ -90,7 +90,7 @@ const SlotMachine = () => {
       setScore((prevScore) => prevScore + (reward * (betAmount / 5))); // Agrega los puntos según el símbolo y la apuesta
     } else if (reels[0] === reels[1] || reels[1] === reels[2] || reels[0] === reels[2]) {
       // Dos figuras iguales
-      setMessage('¡Ganaste 15 puntos!');
+      setMessage('¡Ganaste 20 puntos!');
       setScore((prevScore) => prevScore + 20); // Agrega 15 puntos por dos figuras iguales y la apuesta
     } else {
       setMessage('Intenta de nuevo');
