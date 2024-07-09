@@ -14,7 +14,7 @@ const SlotMachine = () => {
   const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
   const [betAmount, setBetAmount] = useState(5); // Estado para almacenar la cantidad de apuesta
 
-  const symbols = ['🍋', '🍒', '🔔', '⭐️', '🍉'];
+  const symbols = ['🍒', '🔔', '⭐️', '🍉'];
 
   useEffect(() => {
     if (!spinning) return;
@@ -70,19 +70,17 @@ const SlotMachine = () => {
       // Tres figuras iguales
       let reward = 0;
       switch (reels[0]) {
+         
         case 0:
-          reward = 25; // 🍋
-          break;
-        case 1:
           reward = 50; // 🍒
           break;
-        case 2:
+        case 1:
           reward = 75; // 🔔
           break;
-        case 3:
+        case 2:
           reward = 150; // ⭐️
           break;
-        case 4:
+        case 3:
           reward = 100; // 🍉
           break;
         default:
@@ -92,8 +90,8 @@ const SlotMachine = () => {
       setScore((prevScore) => prevScore + (reward * (betAmount / 5))); // Agrega los puntos según el símbolo y la apuesta
     } else if (reels[0] === reels[1] || reels[1] === reels[2] || reels[0] === reels[2]) {
       // Dos figuras iguales
-      setMessage('¡Ganaste 10 puntos!');
-      setScore((prevScore) => prevScore + 10 * (betAmount / 5)); // Agrega 15 puntos por dos figuras iguales y la apuesta
+      setMessage('¡Ganaste 15 puntos!');
+      setScore((prevScore) => prevScore + 15 * (betAmount / 5)); // Agrega 15 puntos por dos figuras iguales y la apuesta
     } else {
       setMessage('Intenta de nuevo');
     }

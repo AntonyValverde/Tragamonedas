@@ -17,7 +17,6 @@ const InfoButton = () => {
           <section>
             <h3>Premios</h3>
             <ul>
-              <li>🍋 x3: 25 puntos</li>
               <li>🍒 x3: 50 puntos</li>
               <li>🔔 x3: 75 puntos</li>
               <li>🍉 x3: 100 puntos</li>
