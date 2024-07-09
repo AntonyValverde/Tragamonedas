@@ -70,7 +70,6 @@ const SlotMachine = () => {
       // Tres figuras iguales
       let reward = 0;
       switch (reels[0]) {
-         
         case 0:
           reward = 50; // 🍒
           break;
@@ -86,12 +85,26 @@ const SlotMachine = () => {
         default:
           break;
       }
-      setMessage(`¡Ganaste ${reward * (betAmount / 5)} puntos!`);
-      setScore((prevScore) => prevScore + (reward * (betAmount / 5))); // Agrega los puntos según el símbolo y la apuesta
+      let multiplier = 1;
+      switch (betAmount) {
+        case 5:
+          multiplier = 1;
+          break;
+        case 15:
+          multiplier = 2;
+          break;
+        case 30:
+          multiplier = 4;
+          break;
+        default:
+          break;
+      }
+      setMessage(`¡Ganaste ${reward * multiplier} puntos!`);
+      setScore((prevScore) => prevScore + (reward * multiplier)); // Agrega los puntos según el símbolo y la apuesta
     } else if (reels[0] === reels[1] || reels[1] === reels[2] || reels[0] === reels[2]) {
       // Dos figuras iguales
       setMessage('¡Ganaste 20 puntos!');
-      setScore((prevScore) => prevScore + 20); // Agrega 15 puntos por dos figuras iguales y la apuesta
+      setScore((prevScore) => prevScore + 20); // Agrega 20 puntos por dos figuras iguales
     } else {
       setMessage('Intenta de nuevo');
     }
@@ -121,9 +134,9 @@ const SlotMachine = () => {
       <Button onClick={spin} text="Jugar" />
       <div className="message">{message}</div>
       <div className="bet-buttons">
-        <Button onClick={() => handleBetAmount(5)} text="Apuesta $5" selected={betAmount === 5} />
-        <Button onClick={() => handleBetAmount(15)} text="Apuesta $15" selected={betAmount === 15} />
-        <Button onClick={() => handleBetAmount(30)} text="Apuesta $30" selected={betAmount === 30} />
+        <Button onClick={() => handleBetAmount(5)} text="Apuesta $5" betAmount={5} selected={betAmount === 5} />
+        <Button onClick={() => handleBetAmount(15)} text="Apuesta $15" betAmount={15} selected={betAmount === 15} />
+        <Button onClick={() => handleBetAmount(30)} text="Apuesta $30" betAmount={30} selected={betAmount === 30} />
       </div>
       <InfoButton /> {/* Botón de información */}
     </div>
