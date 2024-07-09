@@ -1,0 +1,23 @@
+.reel {
+  font-size: 2em;
+  margin: 0 10px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ffcc00; /* Marco dorado para cada casilla */
+  background-color: #000;
+  color: #fff;
+  position: relative; /* Permite posicionamiento absoluto de los elementos internos */
+  overflow: hidden; /* Oculta los elementos que se salen del contenedor */
+}
+
+.reel.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translateY(0); }
+  0% { transform: translateY(-0%); }
+}

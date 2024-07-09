@@ -1,0 +1,38 @@
+.slot-machine {
+  text-align: center;
+  margin: 50px auto;
+  width: 300px;
+  padding: 20px;
+  border: 5px solid #ffcc00; /* Marco dorado */
+  border-radius: 10px;
+  background-color: #333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.frame {
+  border: 2px solid #ffcc00; /* Marco interno dorado */
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden; /* Oculta los elementos que se salen del contenedor */
+}
+
+.reels {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  height: 60px; /* Altura fija para los carretes */
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.score {
+  font-size: 1.5em;
+  color: #ffcc00; /* Color dorado para el puntaje */
+  margin-bottom: 20px;
+}
