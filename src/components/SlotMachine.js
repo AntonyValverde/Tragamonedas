@@ -1,9 +1,10 @@
+// SlotMachine.js
 import React, { useState, useEffect } from 'react';
 import Reel from './Reel';
 import Button from './Button';
 import Modal from './Modal';
 import InfoButton from './InfoButton';
-import '../styles/SlotMachine.css';
+import '../styles/SlotMachine.css';  // Importa estilos generales si es necesario
 
 const SlotMachine = () => {
   const [reels, setReels] = useState([0, 0, 0]);
@@ -11,6 +12,7 @@ const SlotMachine = () => {
   const [spinning, setSpinning] = useState(false);
   const [score, setScore] = useState(100); // Puntaje inicial de 100
   const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
+  const [betAmount, setBetAmount] = useState(5); // Estado para almacenar la cantidad de apuesta
 
   const symbols = ['🍋', '🍒', '🔔', '⭐️', '🍉'];
 
@@ -50,11 +52,11 @@ const SlotMachine = () => {
   }, [spinning]);
 
   const spin = () => {
-    if (spinning || score < 5) return; // No se puede girar si ya está girando o si el puntaje es menor que 5
+    if (spinning || score < betAmount) return; // No se puede girar si ya está girando o si el puntaje es menor que la apuesta
     setSpinning(true);
     setMessage('');
     setScore((prevScore) => {
-      const newScore = prevScore - 5;
+      const newScore = prevScore - betAmount;
       if (newScore <= 0) {
         setShowModal(true);
         return 0;
@@ -65,6 +67,7 @@ const SlotMachine = () => {
 
   const checkWin = (reels) => {
     if (reels[0] === reels[1] && reels[1] === reels[2]) {
+      // Tres figuras iguales
       let reward = 0;
       switch (reels[0]) {
         case 0:
@@ -85,8 +88,12 @@ const SlotMachine = () => {
         default:
           break;
       }
-      setMessage(`¡Ganaste ${reward} puntos!`);
-      setScore((prevScore) => prevScore + reward); // Agrega los puntos según el símbolo
+      setMessage(`¡Ganaste ${reward * (betAmount / 5)} puntos!`);
+      setScore((prevScore) => prevScore + (reward * (betAmount / 5))); // Agrega los puntos según el símbolo y la apuesta
+    } else if (reels[0] === reels[1] || reels[1] === reels[2] || reels[0] === reels[2]) {
+      // Dos figuras iguales
+      setMessage('¡Ganaste 10 puntos!');
+      setScore((prevScore) => prevScore + 10 * (betAmount / 5)); // Agrega 15 puntos por dos figuras iguales y la apuesta
     } else {
       setMessage('Intenta de nuevo');
     }
@@ -96,6 +103,10 @@ const SlotMachine = () => {
     setScore(100);
     setMessage('');
     setShowModal(false);
+  };
+
+  const handleBetAmount = (amount) => {
+    setBetAmount(amount);
   };
 
   return (
@@ -111,6 +122,11 @@ const SlotMachine = () => {
       </div>
       <Button onClick={spin} text="Jugar" />
       <div className="message">{message}</div>
+      <div className="bet-buttons">
+        <Button onClick={() => handleBetAmount(5)} text="Apuesta $5" selected={betAmount === 5} />
+        <Button onClick={() => handleBetAmount(15)} text="Apuesta $15" selected={betAmount === 15} />
+        <Button onClick={() => handleBetAmount(30)} text="Apuesta $30" selected={betAmount === 30} />
+      </div>
       <InfoButton /> {/* Botón de información */}
     </div>
   );

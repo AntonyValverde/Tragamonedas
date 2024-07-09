@@ -1,0 +1,43 @@
+/* BetButtons.css */
+
+.bet-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .bet-button {
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.3s ease; /* Transición suave para cambios de color */
+  }
+  
+  .bet-button.apuesta-5 {
+    background-color: #66BB6A; /* Color de fondo verde claro para apuesta de 5 */
+  }
+  
+  .bet-button.apuesta-15 {
+    background-color: #388E3C; /* Color de fondo verde medio para apuesta de 15 */
+  }
+  
+  .bet-button.apuesta-30 {
+    background-color: #4CAF50; /* Color de fondo verde normal para apuesta de 30 */
+  }
+  
+  .bet-button.selected {
+    background-color: #45a049 !important; /* Color de fondo verde oscuro cuando está seleccionado */
+  }
+  
+  .bet-button:hover {
+    background-color: #3e8e41; /* Color de fondo más oscuro al pasar el mouse */
+  }
+  
