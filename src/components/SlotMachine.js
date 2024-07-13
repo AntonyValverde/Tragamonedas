@@ -13,8 +13,9 @@ const SlotMachine = () => {
   const [score, setScore] = useState(100); // Puntaje inicial de 100
   const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
   const [betAmount, setBetAmount] = useState(5); // Estado para almacenar la cantidad de apuesta
+  const [totalSpent, setTotalSpent] = useState(0); // Estado para mantener el total gastado
 
-  const symbols = ['🍋','🍒', '🔔', '⭐️', '🍉'];
+  const symbols = ['🍋', '🍒', '🔔', '⭐️', '🍉'];
 
   useEffect(() => {
     if (!spinning) return;
@@ -47,6 +48,9 @@ const SlotMachine = () => {
         }, index * 500); // Detiene cada carrete con 0.5 segundos de diferencia
       });
     }, 7000); // Los carretes giran durante 2 segundos
+
+    // Incrementa el total gastado al girar
+    setTotalSpent((prevTotal) => prevTotal + betAmount);
 
     return () => intervalIds.forEach(clearInterval);
   }, [spinning]);
@@ -117,6 +121,7 @@ const SlotMachine = () => {
     setScore(100);
     setMessage('');
     setShowModal(false);
+    // No reiniciar el total gastado al reiniciar el juego
   };
 
   const handleBetAmount = (amount) => {
@@ -141,6 +146,7 @@ const SlotMachine = () => {
         <Button onClick={() => handleBetAmount(15)} text="Apuesta $15" betAmount={15} selected={betAmount === 15} />
         <Button onClick={() => handleBetAmount(30)} text="Apuesta $30" betAmount={30} selected={betAmount === 30} />
       </div>
+      <div className="total-spent">Total Gastado: ${totalSpent}</div> {/* Muestra el total gastado */}
       <InfoButton /> {/* Botón de información */}
     </div>
   );
